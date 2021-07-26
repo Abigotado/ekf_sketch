@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ekf_sketch/widgets/kid_data_fields.dart';
 import 'package:ekf_sketch/widgets/kid_data_item.dart';
 import 'package:ekf_sketch/widgets/kids_data.dart';
 import 'package:ekf_sketch/widgets/stuff_data.dart';
@@ -18,9 +19,11 @@ class _EmployeePageState extends State<EmployeePage> {
   String id;
   _EmployeePageState({required this.id});
 
-  List<KidsData> _kids = [];
 
+  List<KidsData> _kids = [];
   final db = FirebaseFirestore.instance;
+
+  final _globalKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -36,15 +39,9 @@ class _EmployeePageState extends State<EmployeePage> {
             kidFatherName: product.get('patronimic'),
             kidDateOfBirth: product.get('birthDate'));
         preparedProducts.add(prepareProduct);
-        print(33333);
-        print(product.get('lastName'));
-        print(product.get('firstName'));
-        print(product.get('patronimic'));
-        print(product.get('birthDate'));
       }
       setState(() {
         _kids = preparedProducts;
-
       });
     });
   }
@@ -52,6 +49,7 @@ class _EmployeePageState extends State<EmployeePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _globalKey,
       body: SafeArea(
         child: Container(
           child: SingleChildScrollView(
@@ -59,16 +57,20 @@ class _EmployeePageState extends State<EmployeePage> {
               children: [
                 Container(
                   margin: EdgeInsets.only(top: 20, bottom: 10),
-                  child: Text('Должность:',
-                    style: TextStyle(fontWeight: FontWeight.bold),),
+                  child: Text(
+                    'Должность:',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Container(
                   child: Text(widget.value.position),
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 20, bottom: 10),
-                  child: Text('Дата рождения:',
-                    style: TextStyle(fontWeight: FontWeight.bold),),
+                  child: Text(
+                    'Дата рождения:',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Container(
                   child: Text(widget.value.dateOfBirth),
@@ -76,9 +78,12 @@ class _EmployeePageState extends State<EmployeePage> {
                 Container(
                   margin: EdgeInsets.only(top: 20, bottom: 10),
                   child: Text(
-                    'Дети:', style: TextStyle(fontWeight: FontWeight.bold),),
+                    'Дети:',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-                Container(
+                if (_kids.isNotEmpty)
+                  Container(
                     color: Color.fromRGBO(81, 140, 255, 1),
                     child: StreamBuilder<QuerySnapshot>(
                         stream: db.collection('stuff/$id/kids').snapshots(),
@@ -93,22 +98,33 @@ class _EmployeePageState extends State<EmployeePage> {
                                 shrinkWrap: true,
                                 itemCount: _kids.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  if (_kids.isNotEmpty)
-                                    return KidDataItem(value: _kids[index]);
-                                  else
-                                    return Container(
-                                        margin: EdgeInsets.all(15),
-                                        padding: EdgeInsets.only(
-                                            top: 10, bottom: 10),
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                                15),
-                                            color: Color.fromRGBO(
-                                                81, 140, 255, 1)),
-                                        child: Text('Нет детей', style: TextStyle(color: Colors.white),)
-                                    );
+                                  return KidDataItem(value: _kids[index]);
                                 });
                         }),
+                  )
+                else
+                  Center(child: Text('Нет детей')),
+                ElevatedButton(
+                  onPressed: () {
+                    _globalKey.currentState!.showBottomSheet(
+                        (BuildContext context) {
+                           return Container(
+                             height: 500,
+                             color: Color.fromRGBO(81, 140, 255, 1),
+
+                           );
+                        });
+
+                  },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Color.fromRGBO(81, 140, 255, 1))),
+                  child: Center(
+                      child: Text("Добавить ребенка",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.white))),
                 ),
               ],
             ),
@@ -129,9 +145,7 @@ class _EmployeePageState extends State<EmployeePage> {
                   TextSpan(text: ' '),
                   TextSpan(text: widget.value.surname),
                 ],
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
               maxLines: 2,
             ),
