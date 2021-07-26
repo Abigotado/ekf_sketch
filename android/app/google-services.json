@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "157061276457",
+    "project_id": "ekfsketch",
+    "storage_bucket": "ekfsketch.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157061276457:android:de68ea24f5158810c30d38",
+        "android_client_info": {
+          "package_name": "com.nikita.kovalenko.ekf_sketch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157061276457-k2gqh4k71243jo0vb15b7sq75ckfvncq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPCWwTTRjk9GytgreWL7H3YrQJNLa0VGg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157061276457-k2gqh4k71243jo0vb15b7sq75ckfvncq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

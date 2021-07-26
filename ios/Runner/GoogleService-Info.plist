@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>157061276457-g0tjni5i4v6l5u08oqnootha7289kej3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.157061276457-g0tjni5i4v6l5u08oqnootha7289kej3</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBwfs74Fs7M6cgGSdlxa2ZknTq1w_qeDBE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>157061276457</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.nikita.kovalenko.ekfSketch</string>
+	<key>PROJECT_ID</key>
+	<string>ekfsketch</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ekfsketch.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:157061276457:ios:e442c05212f945cbc30d38</string>
+</dict>
+</plist>
