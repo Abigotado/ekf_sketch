@@ -11,46 +11,48 @@ class KidDataItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(15),
-      padding: EdgeInsets.only(top: 10, bottom: 10),
+      margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: Color.fromRGBO(81, 140, 255, 1)),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(right: 2),
-                child: Text(
-                  value.kidSurname,
-                  style: TextStyle(color: Colors.white),
+      child: ClipRRect(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(right: 2),
+                  child: Text(
+                    value.kidSurname,
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(right: 2),
-                child: Text(
-                  value.kidName,
-                  style: TextStyle(color: Colors.white),
+                Container(
+                  margin: EdgeInsets.only(right: 2),
+                  child: Text(
+                    value.kidName,
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
-              ),
-              Container(
-                child: Text(
-                  value.kidFatherName,
-                  style: TextStyle(color: Colors.white),
+                Container(
+                  child: Text(
+                    value.kidFatherName,
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 5, bottom: 5),
-            child: Text(
-              value.kidDateOfBirth,
-              style: TextStyle(color: Colors.white),
+              ],
             ),
-          ),
-        ],
+            Container(
+              margin: EdgeInsets.only(top: 5, bottom: 5),
+              child: Text(
+                value.kidDateOfBirth,
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
