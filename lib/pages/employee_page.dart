@@ -124,16 +124,15 @@ class _EmployeePageState extends State<EmployeePage> {
                   child: ElevatedButton(
                     onPressed: () {
                       showModalBottomSheet(
+                        backgroundColor: Color.fromRGBO(81, 140, 255, 1),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                         context: context,
                           builder: (BuildContext context) {
                              return Container(
-                               height: 600,
-                               color: Color.fromRGBO(81, 140, 255, 1),
                                child: Form(
                                  key: _formKey,
                                  child: Container(
                                    padding: EdgeInsets.only(top: 20),
-                                   color: Color.fromRGBO(81, 140, 255, 1),
                                    child: Column(
                                      children: [
                                        Expanded(
