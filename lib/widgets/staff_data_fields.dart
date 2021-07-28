@@ -1,19 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ekf_sketch/pages/stuff_page.dart';
+import 'package:ekf_sketch/pages/staff_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'date_validator.dart';
 import 'name_validator.dart';
 
-class StuffDataFields extends StatefulWidget {
-  StuffDataFields({Key? key}) : super(key: key);
+class StaffDataFields extends StatefulWidget {
+  StaffDataFields({Key? key}) : super(key: key);
 
   @override
-  _StuffDataFieldsState createState() => _StuffDataFieldsState();
+  _StaffDataFieldsState createState() => _StaffDataFieldsState();
 }
 
-class _StuffDataFieldsState extends State<StuffDataFields> {
+class _StaffDataFieldsState extends State<StaffDataFields> {
   var surname = '';
   var name = '';
   var fatherName = '';
@@ -25,7 +25,7 @@ class _StuffDataFieldsState extends State<StuffDataFields> {
   final firestoreInstance = FirebaseFirestore.instance;
 
   void sendContactInfo() async {
-    firestoreInstance.collection('stuff').add({
+    firestoreInstance.collection('staff').add({
       "lastName": surname,
       "firstName": name,
       "patronimic": fatherName,
@@ -243,7 +243,7 @@ class _StuffDataFieldsState extends State<StuffDataFields> {
                       sendContactInfo();
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => StuffPage()),
+                        MaterialPageRoute(builder: (context) => StaffPage()),
                       ).then((value) => setState(() {}));
                     }
                   },

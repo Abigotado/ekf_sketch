@@ -5,12 +5,12 @@ import 'package:ekf_sketch/widgets/date_validator.dart';
 import 'package:ekf_sketch/widgets/kid_data_item.dart';
 import 'package:ekf_sketch/widgets/kids_data.dart';
 import 'package:ekf_sketch/widgets/name_validator.dart';
-import 'package:ekf_sketch/widgets/stuff_data.dart';
+import 'package:ekf_sketch/widgets/staff_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class EmployeePage extends StatefulWidget {
-  final StuffData value;
+  final StaffData value;
 
   EmployeePage({Key? key, required this.value}) : super(key: key);
 
@@ -34,7 +34,7 @@ class _EmployeePageState extends State<EmployeePage> {
   final _formKey = GlobalKey<FormState>();
 
   Future<dynamic> sendContactInfo() async {
-    db.collection('stuff/$id/kids').add({
+    db.collection('staff/$id/kids').add({
       "lastName": surnameKid,
       "firstName": nameKid,
       "patronimic": fatherNameKid,
@@ -49,7 +49,7 @@ class _EmployeePageState extends State<EmployeePage> {
   }
 
   void getKids() {
-    final productsRef = db.collection('stuff/$id/kids');
+    final productsRef = db.collection('staff/$id/kids');
     productsRef.get().then((serverProducts) {
       List<KidsData> preparedProducts = [];
       for (var product in serverProducts.docs) {
@@ -104,7 +104,7 @@ class _EmployeePageState extends State<EmployeePage> {
                 if (_kids.isNotEmpty)
                   Container(
                     child: StreamBuilder<QuerySnapshot>(
-                        stream: db.collection('stuff/$id/kids').snapshots(),
+                        stream: db.collection('staff/$id/kids').snapshots(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData)
                             return Center(

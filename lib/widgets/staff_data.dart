@@ -1,7 +1,4 @@
-import 'package:ekf_sketch/widgets/kids_data.dart';
-import 'package:flutter/cupertino.dart';
-
-class StuffData {
+class StaffData {
   String documentId;
   String surname;
   String name;
@@ -10,7 +7,7 @@ class StuffData {
   String position;
   int kidsAmount;
 
-  StuffData({
+  StaffData({
     required this.documentId,
     required this.surname,
     required this.name,

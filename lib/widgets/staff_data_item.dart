@@ -1,12 +1,12 @@
 import 'package:ekf_sketch/pages/employee_page.dart';
-import 'package:ekf_sketch/widgets/stuff_data.dart';
+import 'package:ekf_sketch/widgets/staff_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class StuffDataItem extends StatelessWidget {
-  final StuffData value;
+class StaffDataItem extends StatelessWidget {
+  final StaffData value;
 
-  StuffDataItem({Key? key, required this.value}) : super(key: key);
+  StaffDataItem({Key? key, required this.value}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class StuffDataItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
             context,
-            MaterialPageRoute<StuffData>(
+            MaterialPageRoute<StaffData>(
                 builder: (context) => EmployeePage(value: value)));
       },
       child: Container(

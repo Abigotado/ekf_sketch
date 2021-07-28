@@ -1,30 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ekf_sketch/widgets/add_stuff_button.dart';
-import 'package:ekf_sketch/widgets/stuff_data.dart';
-import 'package:ekf_sketch/widgets/stuff_data_item.dart';
+import 'package:ekf_sketch/widgets/add_staff_button.dart';
+import 'package:ekf_sketch/widgets/staff_data.dart';
+import 'package:ekf_sketch/widgets/staff_data_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class StuffPage extends StatefulWidget {
+class StaffPage extends StatefulWidget {
   @override
-  _StuffPageState createState() => _StuffPageState();
+  _StaffPageState createState() => _StaffPageState();
 }
 
-class _StuffPageState extends State<StuffPage> {
-  List<StuffData> stuff = [];
+class _StaffPageState extends State<StaffPage> {
+  List<StaffData> staff = [];
 
   final db = FirebaseFirestore.instance;
 
   @override
   void initState() {
     super.initState();
-    final productsRef = db.collection('stuff');
+    final productsRef = db.collection('staff');
     productsRef.get().then((serverProducts) {
-      List<StuffData> preparedProducts = [];
+      List<StaffData> preparedProducts = [];
       for (var product in serverProducts.docs) {
-        final productsKidsRef = db.collection('stuff/${product.id}/kids');
+        final productsKidsRef = db.collection('staff/${product.id}/kids');
         productsKidsRef.get().then((kids) {
-          StuffData prepareProduct = StuffData(
+          StaffData prepareProduct = StaffData(
             surname: product.get('lastName'),
             name: product.get('firstName'),
             fatherName: product.get('patronimic'),
@@ -37,7 +37,7 @@ class _StuffPageState extends State<StuffPage> {
         });
       }
       setState(() {
-        stuff = preparedProducts;
+        staff = preparedProducts;
       });
     });
   }
@@ -48,7 +48,7 @@ class _StuffPageState extends State<StuffPage> {
       body: SafeArea(
         child: Container(
           child: StreamBuilder<QuerySnapshot>(
-              stream: db.collection('stuff').snapshots(),
+              stream: db.collection('staff').snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData)
                   return Center(
@@ -56,14 +56,14 @@ class _StuffPageState extends State<StuffPage> {
                   );
                 else
                   return ListView.builder(
-                      itemCount: stuff.length + 1,
+                      itemCount: staff.length + 1,
                       itemBuilder: (BuildContext context, int index) {
                         if (index == 0) {
-                          return AddStuff();
+                          return AddStaff();
                         }
                         int numberOfExtraWidget = 1;
                         index = index - numberOfExtraWidget;
-                        return StuffDataItem(value: stuff[index]);
+                        return StaffDataItem(value: staff[index]);
                       });
               }),
         ),

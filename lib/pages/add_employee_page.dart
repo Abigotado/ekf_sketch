@@ -1,4 +1,4 @@
-import 'package:ekf_sketch/widgets/stuff_data_fields.dart';
+import 'package:ekf_sketch/widgets/staff_data_fields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: StuffDataFields(),
+        child: StaffDataFields(),
       ),
       appBar: AppBar(
         title: Text("Добавить сотрудника".toUpperCase()),

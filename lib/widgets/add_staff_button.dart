@@ -2,18 +2,15 @@ import 'package:ekf_sketch/pages/add_employee_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AddStuff extends StatelessWidget {
-
-  AddStuff({Key? key}) : super(key: key);
+class AddStaff extends StatelessWidget {
+  AddStaff({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => AddEmployeePage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AddEmployeePage()));
         },
         child: Container(
             margin: EdgeInsets.all(15),
