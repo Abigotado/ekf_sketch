@@ -63,6 +63,12 @@ class StuffDataItem extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
             ),
+            Container(
+              child: Text(
+                'Количество детей: ${value.kidsAmount}',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
           ],
         ),
       ),

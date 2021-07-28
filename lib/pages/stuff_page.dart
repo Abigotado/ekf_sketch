@@ -1,12 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ekf_sketch/widgets/add_stuff_button.dart';
 import 'package:ekf_sketch/widgets/stuff_data.dart';
 import 'package:ekf_sketch/widgets/stuff_data_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StuffPage extends StatefulWidget {
-  
   @override
   _StuffPageState createState() => _StuffPageState();
 }
@@ -23,14 +22,19 @@ class _StuffPageState extends State<StuffPage> {
     productsRef.get().then((serverProducts) {
       List<StuffData> preparedProducts = [];
       for (var product in serverProducts.docs) {
-        StuffData prepareProduct = StuffData(
+        final productsKidsRef = db.collection('stuff/${product.id}/kids');
+        productsKidsRef.get().then((kids) {
+          StuffData prepareProduct = StuffData(
             surname: product.get('lastName'),
             name: product.get('firstName'),
             fatherName: product.get('patronimic'),
             dateOfBirth: product.get('birthDate'),
             position: product.get('positionHeld'),
-            documentId: product.id);
-        preparedProducts.add(prepareProduct);
+            documentId: product.id,
+            kidsAmount: kids.size,
+          );
+          preparedProducts.add(prepareProduct);
+        });
       }
       setState(() {
         stuff = preparedProducts;
@@ -71,5 +75,4 @@ class _StuffPageState extends State<StuffPage> {
       ),
     );
   }
-  
 }

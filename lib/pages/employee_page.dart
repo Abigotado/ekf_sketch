@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ekf_sketch/widgets/date_validator.dart';
 import 'package:ekf_sketch/widgets/kid_data_item.dart';
@@ -31,21 +33,22 @@ class _EmployeePageState extends State<EmployeePage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  void sendContactInfo() async {
+  Future<dynamic> sendContactInfo() async {
     db.collection('stuff/$id/kids').add({
       "lastName": surnameKid,
       "firstName": nameKid,
       "patronimic": fatherNameKid,
       "birthDate": dateOfBirthKid,
-    }).then((value) {
-      print(value.id);
     });
   }
 
   @override
   void initState() {
     super.initState();
+    getKids();
+  }
 
+  void getKids() {
     final productsRef = db.collection('stuff/$id/kids');
     productsRef.get().then((serverProducts) {
       List<KidsData> preparedProducts = [];
@@ -373,6 +376,7 @@ class _EmployeePageState extends State<EmployeePage> {
                                               if (_formKey.currentState!
                                                   .validate()) {
                                                 sendContactInfo();
+                                                getKids();
                                                 Navigator.pop(context);
                                               }
                                             },

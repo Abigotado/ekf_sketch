@@ -31,8 +31,6 @@ class _StuffDataFieldsState extends State<StuffDataFields> {
       "patronimic": fatherName,
       "birthDate": dateOfBirth,
       "positionHeld": position,
-    }).then((value) {
-      print(value.id);
     });
   }
 
